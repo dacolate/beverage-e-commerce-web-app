@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String    @id
+  name       String    @unique
+  phone      String    @unique
+  password   String
+  role       Role // "ADMIN" or "USER"
+  isFavorite Boolean   @default(false) // For favorite customers
+  orders     Order[] // Relation to orders
+  payments   Payment[] // Relation to payments
+
+  Session Session[]
+}
+
+model Session {
+  id        String   @id
+  userId    String
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model Beverage {
+  id        Int             @id @default(autoincrement())
+  name      String
+  price     Float
+  stock     Int
+  addedDate DateTime
+  orders    OrderBeverage[] // Relation to order-beverage join table
+}
+
+model Order {
+  id         Int             @id @default(autoincrement())
+  customerId String? // Optional if it's a company expense
+  customer   User?           @relation(fields: [customerId], references: [id])
+  orderDate  DateTime        @default(now())
+  totalPrice Float
+  type       OrderType // "INCOME" or "EXPENSE"
+  beverages  OrderBeverage[] // Relation to order-beverage join table
+  payments   Payment[] // Relation to payments
+}
+
+model OrderBeverage {
+  id         Int      @id @default(autoincrement())
+  orderId    Int
+  order      Order    @relation(fields: [orderId], references: [id])
+  beverageId Int
+  beverage   Beverage @relation(fields: [beverageId], references: [id])
+  quantity   Int
+}
+
+model Payment {
+  id          Int         @id @default(autoincrement())
+  customerId  String? // Optional if it's a company expense
+  customer    User?       @relation(fields: [customerId], references: [id])
+  orderId     Int? // Optional if it's not linked to a specific order
+  order       Order?      @relation(fields: [orderId], references: [id])
+  paymentDate DateTime    @default(now())
+  totalPrice  Float
+  type        PaymentType // "INCOME" or "EXPENSE"
+  mode        PaymentMode // "CASH", "MOMO", or "OM"
+}
+
+enum Role {
+  ADMIN
+  USER
+}
+
+enum OrderType {
+  INCOME
+  EXPENSE
+}
+
+enum PaymentType {
+  INCOME
+  EXPENSE
+}
+
+enum PaymentMode {
+  CASH
+  MOMO
+  OM
+}

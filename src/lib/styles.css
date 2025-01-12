@@ -1,0 +1,20 @@
+:root {
+    --viewport-height: 100vh; /* Default to full viewport height */
+  }
+  
+  .full-page-drawer {
+    height: var(--viewport-height); /* Use the variable for height */
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    background-color: white;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+  }
+  
+  .full-page-drawer.hidden {
+    transform: translateY(100%);
+  }
+  
