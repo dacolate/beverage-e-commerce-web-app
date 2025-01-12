@@ -24,8 +24,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Zenith",
-    default: "Zenith",
+    template: "%s | Blaiso",
+    default: "Blaiso",
   },
   description: "The social media app for powernerds",
 };
@@ -39,17 +39,17 @@ export default function RootLayout({
     <html lang="en">
       {/* <body className={`${geistSans.variable} ${geistMono.variable}`}> */}
       <body className={inter.className}>
-        <ReactQueryProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <div className="bg-blue-600 w-full"></div>
-            {children}
-          </ThemeProvider>
-        </ReactQueryProvider>
+        {/* <ReactQueryProvider> */}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="bg-blue-600 w-full"></div>
+          {children}
+        </ThemeProvider>
+        {/* </ReactQueryProvider> */}
         <Toaster />
       </body>
     </html>

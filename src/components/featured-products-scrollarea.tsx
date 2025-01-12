@@ -53,34 +53,9 @@ export const featuredProducts = [
 
 export function FeaturedProductsScrollArea() {
   return (
-    <ScrollArea className="w-full whitespace-nowrap rounded-md">
-      <div className="flex w-full gap-2">
+    <ScrollArea className="w-full whitespace-nowrap rounded-md overflow-hidden">
+      <div className="flex w-full gap-4 items-stretch">
         {featuredProducts.map((product, index) => (
-          // <Card className="h-full w-36" key={product.name}>
-          //   <CardContent className="p-2">
-          //     <Image
-          //       src={product.imageUrl}
-          //       alt={product.name}
-          //       width={100}
-          //       height={100}
-          //       className="w-full h-24 object-cover mb-2 rounded"
-          //     />
-          //     <h3 className="text-sm font-semibold mb-1 truncate">
-          //       {product.name}
-          //     </h3>
-          //   </CardContent>
-          //   <CardFooter className="p-2 flex justify-between items-center">
-          //     <span className="text-sm font-bold text-yellow-600">
-          //       {product.price} F
-          //     </span>
-          //     <Button
-          //       size="sm"
-          //       className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 text-xs"
-          //     >
-          //       Buy
-          //     </Button>
-          //   </CardFooter>
-          // </Card>
           <ProductCard key={index} {...product} />
         ))}
       </div>

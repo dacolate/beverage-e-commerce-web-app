@@ -5,7 +5,7 @@ import { ProductCard } from "@/components/product-card";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { ShoppingCart } from "lucide-react";
+import { ChevronUp, ShoppingCart } from "lucide-react";
 import Image from "next/image";
 
 const products = [
@@ -95,11 +95,13 @@ export default function Home() {
       {/* <Button className="sm:hidden fixed bottom-0 h-12 w-full shadow-lg rounded-sm bg-gray-900 hover:bg-gray-950 text-white">
         New command
       </Button> */}
-      <div className="fixed bottom-0 left-0 right-0 bg-gray-900 border-t p-4 flex justify-between items-center">
-        <div className="text-lg font-bold">Total: 0 F</div>
-        <Button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900">
-          <ShoppingCart className="mr-2 h-4 w-4" /> My order
+      <div className="fixed md:hidden bottom-0 left-0 right-0 bg-gray-900 border-t border-gray-700 p-4 flex justify-between items-center space-x-4 shadow-lg">
+        <Button className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 w-full flex items-center justify-center py-2 rounded-md text-sm font-semibold transition-all duration-300 ease-in-out">
+          <ShoppingCart className="mr-2 h-5 w-5" /> My order
         </Button>
+        <span className="flex items-center justify-center p-2 rounded-full bg-gray-800 text-yellow-400 cursor-pointer hover:bg-gray-700 transition-all duration-300 ease-in-out">
+          <ChevronUp size={30} />
+        </span>
       </div>
     </main>
   );
