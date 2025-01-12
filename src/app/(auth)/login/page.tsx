@@ -1,4 +1,3 @@
-import loginImage from "../../assets/login-image.jpg";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -24,15 +23,11 @@ export default function Page() {
             </div>
             <LoginForm />
             <Link href="/signup" className="block text-center hover:underline">
-              Don&apos;t have an account? <span className="font-bold underline">Sign up</span>
+              Don&apos;t have an account?{" "}
+              <span className="font-bold underline">Sign up</span>
             </Link>
           </div>
         </div>
-        <Image
-          src={loginImage}
-          alt=""
-          className="hidden w-1/2 object-cover md:block"
-        />
       </div>
     </main>
   );
