@@ -42,16 +42,6 @@ export function Header() {
             <span className="hidden md:inline">Account</span>
           </Link>
         </Button>
-
-        <Button variant="ghost" asChild>
-          <Link
-            href="/cart"
-            className="md:flex items-center hover:text-yellow-400 transition-all duration-300 hidden"
-          >
-            <ShoppingCart className="h-5 w-5 mr-1" />
-            <span className="hidden md:inline">Cart</span>
-          </Link>
-        </Button>
       </div>
     </header>
   );

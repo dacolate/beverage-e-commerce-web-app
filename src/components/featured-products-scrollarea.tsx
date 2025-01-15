@@ -13,42 +13,34 @@ import { ProductCard } from "./product-card";
 
 export const featuredProducts = [
   {
+    id: "featured-1",
     name: "33 Export",
     description: "12 by crate",
     price: 7800,
     imageUrl: "https://i.postimg.cc/FKvCTk9S/33-export.jpg",
     conditioned: true,
   },
-  // {
-  //   name: "Castel",
-  //   description: "12 by crate",
-  //   price: 7800,
-  //   imageUrl: "https://i.postimg.cc/635jXs45/castel.jpg",
-  // },
   {
+    id: "featured-2",
     name: "Booster Cola",
     description: "12 by crate",
     price: 7800,
     imageUrl: "https://i.postimg.cc/fT6r0gpB/booster-cola.jpg",
   },
   {
+    id: "featured-3",
     name: "Chill",
     description: "12 by crate",
     price: 7800,
     imageUrl: "https://i.postimg.cc/tC1cJHSs/chill.jpg",
   },
   {
+    id: "featured-4",
     name: "Isenbeck",
     description: "12 by crate",
     price: 7800,
     imageUrl: "https://i.postimg.cc/XvgHmNJz/isenbeck.jpg",
   },
-  // {
-  //   name: "Mutzig",
-  //   description: "12 by crate",
-  //   price: 7800,
-  //   imageUrl: "https://i.postimg.cc/mgC63yGR/mutzig.jpg",
-  // },
 ];
 
 export function FeaturedProductsScrollArea() {

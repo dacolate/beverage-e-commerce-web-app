@@ -1,6 +1,7 @@
 import { validateRequest } from "@/auth";
 import { redirect } from "next/navigation";
 import SessionProvider from "./SessionProvider";
+import { CartProvider } from "./contexts/CartContext";
 
 export default async function Layout({
   children,
@@ -11,10 +12,5 @@ export default async function Layout({
 
   // if (!session.user) redirect("/login");
 
-  return (
-    <SessionProvider value={session}>
-      <div className="bg-red-600 w-full"></div>
-      {children}
-    </SessionProvider>
-  );
+  return <SessionProvider value={session}>{children}</SessionProvider>;
 }

@@ -10,6 +10,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { Inter } from "next/font/google";
 
 import { AnimatePresence } from "framer-motion";
+import { CartProvider } from "./(main)/contexts/CartContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -47,7 +48,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className="bg-blue-600 w-full"></div>
-          {children}
+          <CartProvider>{children}</CartProvider>
         </ThemeProvider>
         {/* </ReactQueryProvider> */}
         <Toaster />

@@ -18,12 +18,11 @@ model User {
   name       String    @unique
   phone      String    @unique
   password   String
-  role       Role // "ADMIN" or "USER"
+  role       Role
   isFavorite Boolean   @default(false) // For favorite customers
-  orders     Order[] // Relation to orders
-  payments   Payment[] // Relation to payments
-
-  Session Session[]
+  orders     Order[]
+  payments   Payment[]
+  sessions   Session[]
 }
 
 model Session {
@@ -39,8 +38,10 @@ model Beverage {
   id        Int             @id @default(autoincrement())
   name      String
   price     Float
+  imageUrl  String?         @default("")
   stock     Int
-  addedDate DateTime
+  status    BeverageStatus  @default(AVAILABLE) // New status field
+  addedDate DateTime        @default(now())
   orders    OrderBeverage[] // Relation to order-beverage join table
 }
 
@@ -50,7 +51,7 @@ model Order {
   customer   User?           @relation(fields: [customerId], references: [id])
   orderDate  DateTime        @default(now())
   totalPrice Float
-  type       OrderType // "INCOME" or "EXPENSE"
+  type       OrderType
   beverages  OrderBeverage[] // Relation to order-beverage join table
   payments   Payment[] // Relation to payments
 }
@@ -72,10 +73,11 @@ model Payment {
   order       Order?      @relation(fields: [orderId], references: [id])
   paymentDate DateTime    @default(now())
   totalPrice  Float
-  type        PaymentType // "INCOME" or "EXPENSE"
-  mode        PaymentMode // "CASH", "MOMO", or "OM"
+  type        PaymentType
+  mode        PaymentMode
 }
 
+// Enums
 enum Role {
   ADMIN
   USER
@@ -95,4 +97,11 @@ enum PaymentMode {
   CASH
   MOMO
   OM
+}
+
+enum BeverageStatus {
+  AVAILABLE
+  CONDITIONED
+  OUT_OF_STOCK
+  COMING_SOON
 }
